@@ -1,7 +1,6 @@
 package com.github.faustofel.task_3_1_3.service;
 
 import com.github.faustofel.task_3_1_3.model.User;
-
 import java.util.List;
 
 public interface UserService {

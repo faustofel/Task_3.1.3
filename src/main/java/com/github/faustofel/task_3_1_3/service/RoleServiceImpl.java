@@ -4,7 +4,6 @@ import com.github.faustofel.task_3_1_3.dao.RoleDAO;
 import com.github.faustofel.task_3_1_3.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

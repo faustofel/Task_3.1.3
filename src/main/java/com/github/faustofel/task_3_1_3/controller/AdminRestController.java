@@ -1,6 +1,5 @@
 package com.github.faustofel.task_3_1_3.controller;
 
-import com.github.faustofel.task_3_1_3.model.Role;
 import com.github.faustofel.task_3_1_3.model.User;
 import com.github.faustofel.task_3_1_3.service.RoleService;
 import com.github.faustofel.task_3_1_3.service.UserService;
@@ -9,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -48,8 +46,13 @@ public class AdminRestController {
 
     @PostMapping("createUser")
     public ResponseEntity createUser(@RequestBody User user) {
-
         userService.addUser(user);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PatchMapping("updateUser")
+    public ResponseEntity updateUser(@RequestBody User user) {
+        userService.updateUser(user);
         return new ResponseEntity(HttpStatus.OK);
     }
 }

@@ -5,7 +5,6 @@ import com.github.faustofel.task_3_1_3.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -44,9 +43,13 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void updateUser(User user) {
-        if(!user.getPassword().isEmpty()&&userDAO.getUserById(user.getId()).getPassword().compareTo(user.getPassword())!=0) {
+
+        if(!user.getPassword().isEmpty()) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
+        } else {
+            user.setPassword(userDAO.getUserById(user.getId()).getPassword());
         }
+
         userDAO.updateUser(user);
     }
 
