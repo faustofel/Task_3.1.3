@@ -1,0 +1,55 @@
+<!-- Modal -->
+<div th:fragment="createModal"
+     class="modal fade"
+     id="createModal"
+     tabindex="-1"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">CREATE NEW USER</h5>
+            </div>
+            <form th:method="POST" th:action="@{/admin}" th:object="${user}">
+                <div class="modal-body">
+                    <table class="table">
+                        <tr>
+                            <th class="text-end">USERNAME</th>
+                            <td><input class="form-control" type="text" name="userName" placeholder="USERNAME" required/></td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">PASSWORD</th>
+                            <td><input class="form-control" type="text" name="password" placeholder="Password1!" required/></td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">E-MAIL</th>
+                            <td><input class="form-control" type="text" name="email" placeholder="user@email.srv"/></td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">NAME</th>
+                            <td><input class="form-control" type="text" name="name" placeholder="NAME"/></td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">LASTNAME</th>
+                            <td><input class="form-control" type="text" name="lastname" placeholder="LASTNAME"/></td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">ROLES :</th>
+                            <td>
+                                <select class="form-select" name="roleId" multiple>
+                                    <option th:each="role:${roles}"
+                                            th:value="${role.id}"
+                                            th:utext="${role.roleName}">
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">CREATE</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

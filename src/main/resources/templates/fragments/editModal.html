@@ -1,0 +1,61 @@
+<!-- Modal -->
+<div th:fragment="editModal"
+     class="modal fade"
+     id="edtiModal"
+     tabindex="-1"
+     aria-hidden="true"
+     th:attrappend="id=${user.id}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">EDIT USER <span th:text="${user.username}"></span></h5>
+            </div>
+            <form th:method="PATCH" th:action="@{/admin/editUser/{id} (id=${user.id})}" th:object="${user}">
+                <div class="modal-body">
+                    <table class="table">
+                        <tr>
+                            <th class="text-end">ID</th>
+                            <td><input class="form-control" type="text" name="id" th:value="${user.id}" disabled/></td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">USERNAME</th>
+                            <td><input class="form-control" type="text" name="userName" th:value="*{userName}" required/></td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">PASSWORD</th>
+                            <td><input class="form-control" type="text" name="password" th:value="*{password}" required/></td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">E-MAIL</th>
+                            <td><input class="form-control" type="text" name="email" th:value="*{email}" required/></td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">NAME</th>
+                            <td><input class="form-control" type="text" name="name" th:value="*{name}" required/></td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">LASTNAME</th>
+                            <td><input class="form-control" type="text" name="lastname" th:value="*{lastname}" required/></td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">ROLES :</th>
+                            <td>
+                                <select class="form-select" name="roleId" multiple>
+                                    <option th:each="role:${roles}"
+                                            th:value="${role.id}"
+                                            th:utext="${role.roleName}"
+                                            th:selected="${user.hasRole(role)}">
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">UPDATE</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
